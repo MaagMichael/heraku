@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>BMI check result</title>
+  </head>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+    /* --- Variables --- */
+
+    :root {
+      --theme-color: #4e7ba7;
+      --bg-light-color: #d3d0da;
+      --bg-dark-color: #b5b3be;
+      --text-color: #0b1320;
+      --link-color: #d28f1b;
+    }
+    /* --- General CSS --- */
+    .marginauto {
+        margin: 10px auto 20px;
+        display: block;
+        
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      font-size: 1rem;
+      padding: 3rem;
+    }
+    h1 {
+      color: var(--text-color);
+      font-size: 0.9rem;
+    }
+    .legend{
+      max-width: 100%;
+      display: block;
+    }
+    </style>
+  <body>
+
+    {% if bmi <= 18.5 %}
+    <h1 style="border:3px solid rgb(9, 126, 221);">BMI result is underweight: {{ bmi }}</h1> <!--id stands for variable result in python-->
+    {% elif bmi <= 24.9 %}
+    <h1 style="border:3px solid rgb(8, 22, 221);">BMI result is normal: {{ bmi }}</h1>
+    {% elif bmi <= 29.9 %}
+    <h1 style="border:3px solid rgb(4, 73, 143);">BMI result is overweight: {{ bmi }}</h1>
+    {% elif bmi <= 39.9 %}
+    <h1 style="border:3px solid yellow;">BMI result is obese: {{ bmi }}</h1>
+    {% elif bmi > 39.9 %}    
+    <h1 style="border:3px solid red;">BMI result is extremly obese: {{ bmi }}</h1>
+    {% else %}
+    <h1>BMI error, value is: {{ bmi }}</h1>
+    {% endif %}
+    
+    <!-- center bmi chart on page using css, see above -->
+    <div>
+      <img class="legend" src="{{ url_for('static', path='/bmi-chart.png') }}" alt="BMI Chart with categories" />
+    </div>
+    
+    
+  </body>
+</html>
