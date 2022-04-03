@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request
 import uvicorn
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles 
-from fastapi.responses import HTMLResponse # only for case 2
+from fastapi.responses import HTMLResponse # only for case 2 HTML response
 
 import datetime
 app = FastAPI()
@@ -30,10 +30,10 @@ async def calc_bmi(height: float, weight: float) -> float:
 
 #++++++++++++++++++ HTML response +++++++++++++++++++++++++++++++ request as "/bmicalchtml/2,77"
 
-@app.get("/bmicalchtml/{height},{weight}", response_class=HTMLResponse)
-async def calc_bmi(request: Request, height: float, weight: float):
-    result = round(weight/ (height*height),2)
-    return templates.TemplateResponse("bmi_result.html", {"request": request, "bmi": result})
+# @app.get("/bmicalchtml/{height},{weight}", response_class=HTMLResponse)
+# async def calc_bmi(request: Request, height: float, weight: float):
+#     result = round(weight/ (height*height),2)
+#     return templates.TemplateResponse("bmi_result.html", {"request": request, "bmi": result})
 
 if __name__ == "__main__":
     uvicorn.run("main:app")
